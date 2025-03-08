@@ -13,12 +13,15 @@ export function NavBar({
   const items = [
     {
       name: 'Home',
-      url: '#',
+      url: '/',
       icon: Home
     },
-    { name: 'About', url: '#', icon: User },
-    { name: 'Projects', url: '#', icon: Briefcase },
-    { name: 'Resume', url: '#', icon: FileText }
+    { name: 'About', url: '/about', icon: User },
+    { name: 'Courses', url: '/courses', icon: Briefcase },
+    { name: 'Publication', url: '/publication', icon: FileText },
+    { name: 'Forum', url: '/forum', icon: FileText },
+    { name: 'Contact', url: '/contact', icon: FileText },
+    { name: 'Login', url: '/login', icon: FileText }
   ]
   const [activeTab, setActiveTab] = useState(items[0].name)
   const [isMobile, setIsMobile] = useState(false)
@@ -40,7 +43,7 @@ export function NavBar({
         className
       )}>
       <div
-        className="flex items-center gap-3 bg-background/5 border border-border backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
+        className="flex items-center gap-1y md:gap-3 bg-background/5 border border-border backdrop-blur-lg py-1 px-1 rounded-full shadow-lg">
         {items.map((item) => {
           const Icon = item.icon
           const isActive = activeTab === item.name
@@ -51,13 +54,13 @@ export function NavBar({
               href={item.url}
               onClick={() => setActiveTab(item.name)}
               className={cn(
-                "relative cursor-pointer text-sm font-semibold px-6 py-2 rounded-full transition-colors",
+                "relative cursor-pointer text-sm font-semibold px-3 md:px-6 py-2 rounded-full transition-colors",
                 "text-foreground/80 hover:text-primary",
                 isActive && "bg-muted text-primary"
               )}>
               <span className="hidden md:inline">{item.name}</span>
               <span className="md:hidden">
-                <Icon size={18} strokeWidth={2.5} />
+                <Icon size={24} strokeWidth={2} />
               </span>
               {isActive && (
                 <motion.div
