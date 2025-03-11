@@ -78,7 +78,7 @@ export function CourseDialog({ open, onOpenChange, onSave, course }) {
     }, [course, open])
 
     const handleChange = (field) => {
-        setFormData((prev) => ({
+        setFormData((prev, value) => ({
             ...prev,
             [field]: value,
         }))

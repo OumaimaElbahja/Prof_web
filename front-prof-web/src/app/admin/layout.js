@@ -1,5 +1,5 @@
 import { SideBar } from "@/components/ui/sideBarApp";
-import LoginPage from "../login/page";
+import LoginPage from "../(auth)/login/page";
 
 export const metadata = {
   title: "Mohamed Saad AZIZI",

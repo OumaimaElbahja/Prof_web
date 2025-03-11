@@ -70,7 +70,7 @@ export function SideBar({ children }) {
     return (
         <div
             className={cn(
-                "rounded-md flex flex-col md:flex-row bg-gray-200 dark:bg-neutral-800 w-full   mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden h-full",
+                "rounded-md  flex flex-col md:flex-row bg-gray-200 dark:bg-neutral-800 w-full   mx-auto border border-neutral-200 dark:border-neutral-700 overflow-hidden h-full",
                 // "h-screen" // for your use case, use `h-screen` instead of `h-[60vh]`
             )}
         >
