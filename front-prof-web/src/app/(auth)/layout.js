@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   // const isAdmin = pathname.startsWith("/admin");
   return (
     <>
-      <NavBar />
+     {/*/ <NavBar /> */}
       {children}
       <Toaster />
     </>
