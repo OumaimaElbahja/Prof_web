@@ -37,7 +37,7 @@ const defaultValues= {
 }
 
 export function NotificationSettings() {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm({
     resolver: zodResolver(notificationFormSchema),

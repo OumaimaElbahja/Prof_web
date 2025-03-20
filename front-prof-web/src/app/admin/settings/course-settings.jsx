@@ -44,9 +44,9 @@ const defaultValues = {
 }
 
 export function CourseSettings() {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState(false)
 
-  const form = useForm<CourseFormValues>({
+  const form = useForm({
     resolver: zodResolver(courseFormSchema),
     defaultValues,
   })

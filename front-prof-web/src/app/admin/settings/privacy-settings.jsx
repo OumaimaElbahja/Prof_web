@@ -35,9 +35,9 @@ const defaultValues = {
 }
 
 export function PrivacySettings() {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [isLoading, setIsLoading] = useState(false)
 
-  const form = useForm<PrivacyFormValues>({
+  const form = useForm({
     resolver: zodResolver(privacyFormSchema),
     defaultValues,
   })

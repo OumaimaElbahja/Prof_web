@@ -57,15 +57,15 @@ const defaultAccountValues = {
 }
 
 export function AccountSettings() {
-  const [isPasswordLoading, setIsPasswordLoading] = useState<boolean>(false)
-  const [isAccountLoading, setIsAccountLoading] = useState<boolean>(false)
+  const [isPasswordLoading, setIsPasswordLoading] = useState(false)
+  const [isAccountLoading, setIsAccountLoading] = useState(false)
 
-  const passwordForm = useForm<PasswordFormValues>({
+  const passwordForm = useForm({
     resolver: zodResolver(passwordFormSchema),
     defaultValues: defaultPasswordValues,
   })
 
-  const accountForm = useForm<AccountFormValues>({
+  const accountForm = useForm({
     resolver: zodResolver(accountFormSchema),
     defaultValues: defaultAccountValues,
   })
