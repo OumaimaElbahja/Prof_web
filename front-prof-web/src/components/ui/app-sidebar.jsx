@@ -41,6 +41,7 @@ const items = [
         title: "Courses",
         url: "/admin/courses",
         icon: SiCoursera,
+    }, {
         title: "Settings",
         url: "/admin/settings",
         icon: Settings,
