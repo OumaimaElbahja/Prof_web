@@ -11,11 +11,12 @@ import { Textarea } from "@/components/ui/textarea"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { useState } from "react"
-import { toast } from "@/hooks/use-toast"
+import { toast } from "sonner"
 
 const profileFormSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
+    
   }),
   email: z.string().email({
     message: "Please enter a valid email address.",
@@ -53,10 +54,10 @@ export function ProfileSettings() {
     setTimeout(() => {
       console.log(data)
       setIsLoading(false)
-      toast({
-        title: "Profile updated",
-        description: "Your profile information has been updated successfully.",
-      })
+      toast("Profile updated", {
+        description: "Your profile information has been updated successfully",
+        
+    })
     }, 1000)
   }
 
@@ -176,25 +177,11 @@ export function ProfileSettings() {
                   </FormItem>
                 )}
               />
-
-              <FormField
-                control={form.control}
-                name="officeHours"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Office Hours</FormLabel>
-                    <FormControl>
-                      <Input placeholder="e.g. Monday and Wednesday, 2-4pm" {...field} />
-                    </FormControl>
-                    <FormDescription>When are you available for students to meet with you?</FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <Button type="submit" disabled={isLoading}>
-                {isLoading ? "Saving..." : "Save changes"}
-              </Button>
+<div className="flex justify-end">
+  <Button type="submit"  disabled={isLoading}>
+    {isLoading ? "Saving..." : "Save changes"}
+  </Button>
+</div> 
             </form>
           </Form>
         </CardContent>
