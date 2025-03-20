@@ -23,15 +23,28 @@ export default function SettingsPage() {
 
       <Tabs defaultValue="profile" className="w-full">
 
-        <TabsList className="p-3 md:grid w-full grid-cols-5">
-          {/* <ScrollArea className="w-96 whitespace-nowrap rounded-md border"> */}
+        <TabsList className="hidden md:grid w-full grid-cols-5">
+
+
           <TabsTrigger value="profile">Profile</TabsTrigger>
           <TabsTrigger value="notifications">Notifications</TabsTrigger>
           <TabsTrigger value="courses">Course Defaults</TabsTrigger>
           <TabsTrigger value="privacy">Privacy</TabsTrigger>
           <TabsTrigger value="account">Account</TabsTrigger>
-          {/* <ScrollBar orientation="horizontal" /> */}
-          {/* </ScrollArea> */}
+
+        </TabsList>
+        <TabsList className=" md:hidden w-full ">
+          <ScrollArea className="w-full md:hidden  whitespace-nowrap rounded-md ">
+            <TabsTrigger value="profile">Profile</TabsTrigger>
+            <TabsTrigger value="notifications">Notifications</TabsTrigger>
+            <TabsTrigger value="courses">Course Defaults</TabsTrigger>
+            <TabsTrigger value="privacy">Privacy</TabsTrigger>
+            <TabsTrigger value="account">Account</TabsTrigger>
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
+
+
+
         </TabsList>
         <TabsContent value="profile" className="mt-6">
           <ProfileSettings />
@@ -49,7 +62,7 @@ export default function SettingsPage() {
           <AccountSettings />
         </TabsContent>
       </Tabs>
-    </div>
+    </div >
   )
 }
 
