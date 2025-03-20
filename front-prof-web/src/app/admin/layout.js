@@ -1,17 +1,8 @@
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { Toaster } from "sonner"
 import { AppSidebar } from "@/components/ui/app-sidebar";
 
 import LoginPage from "../(auth)/login/page";
-
-import { Separator } from "@radix-ui/react-dropdown-menu";
 import AppSidebarInset from "@/components/ui/sidebar-inset";
 import { NavigationEvents } from "@/components/test";
 import { Suspense } from "react";
@@ -28,6 +19,7 @@ export default function RootLayout({ children }) {
         <AppSidebar />
         <AppSidebarInset>{children}</AppSidebarInset>
       </SidebarProvider>
+      <Toaster />
       <Suspense fallback={"loading..."}>
         <NavigationEvents />
       </Suspense>
