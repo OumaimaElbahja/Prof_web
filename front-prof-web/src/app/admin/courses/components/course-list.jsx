@@ -7,7 +7,8 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Badge } from "@/components/ui/badge"
-import { Edit, FileText, ImageIcon, Link, MoreHorizontal, Search, Trash2, Video } from "lucide-react"
+import { BookOpen, Edit, FileText, Link as LinkIcon, ImageIcon, MoreHorizontal, Search, Trash2, Video } from "lucide-react"
+import Link from "next/link"
 
 const ITEMS_PER_PAGE = 9 // Adjust this value as needed
 
@@ -56,7 +57,7 @@ export function CourseList({ courses, onEdit, onDelete }) {
             case "image":
                 return <ImageIcon className="h-4 w-4" />
             case "link":
-                return <Link className="h-4 w-4" />
+                return <LinkIcon className="h-4 w-4" />
             default:
                 return <FileText className="h-4 w-4" />
         }
@@ -172,22 +173,32 @@ export function CourseList({ courses, onEdit, onDelete }) {
                                     </div>
                                 )}
                             </CardContent>
-                            <CardFooter className="border-t pt-4">
-                                <Button variant="outline" size="sm" className="w-full" onClick={() => onEdit(course)}>
-                                    <Edit className="mr-2 h-4 w-4" />
-                                    Edit Course
-                                </Button>
+
+                            <CardFooter className=" px-6 py-2">
+                                <div className="flex justify-between items-center w-full">
+                                    <Badge variant={course.status === "active" ? "default" : "secondary"}>
+                                        {course.status === "active" ? "Active" : "Archived"}
+                                    </Badge>
+                                    <Button variant="outline" size="sm" asChild>
+                                        <Link href={`/admin/courses/${course.id}`}>
+                                            <BookOpen className="mr-2 h-4 w-4" />
+                                            Open Course
+                                        </Link>
+                                    </Button>
+                                </div>
                             </CardFooter>
-                        </Card>
+                        </Card >
                     ))}
-                </div>
+                </div >
             )}
-            {hasMore && (
-                <div className="flex justify-center py-4">
-                    <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
-                </div>
-            )}
-        </div>
+            {
+                hasMore && (
+                    <div className="flex justify-center py-4">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                    </div>
+                )
+            }
+        </div >
     )
 }
 

@@ -387,7 +387,12 @@ export default function ProfessorBackoffice() {
   return (
     <div className="container mx-auto h-full py-8">
       <div className="md:p-0 p-4 flex items-center justify-between  mb-1 md:mb-8">
-        <h1 className="text-3xl font-bold">Courses</h1>
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">Courses</h1>
+          <p className="text-muted-foreground">
+            Manage your courses and student enrollments
+          </p>
+        </div>
         <Button onClick={openAddDialog} className="flex items-center gap-2">
           <PlusCircle className="h-4 w-4" />
           Add Course
