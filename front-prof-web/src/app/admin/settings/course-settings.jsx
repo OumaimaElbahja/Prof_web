@@ -11,7 +11,7 @@ import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Switch } from "@/components/ui/switch"
 import { Textarea } from "@/components/ui/textarea"
-import { toast } from "@/hooks/use-toast"
+import { toast } from "sonner"
 
 const courseFormSchema = z.object({
   defaultGradingScale: z.enum(["percentage", "letter", "points"], {
@@ -60,8 +60,7 @@ export function CourseSettings() {
     setTimeout(() => {
       console.log(data)
       setIsLoading(false)
-      toast({
-        title: "Course defaults updated",
+      toast("Course settings updated", {
         description: "Your course default settings have been saved successfully.",
       })
     }, 1000)
@@ -241,10 +240,11 @@ export function CourseSettings() {
                   )}
                 />
               </div>
-
+              <div className="flex justify-end">
               <Button type="submit" disabled={isLoading}>
                 {isLoading ? "Saving..." : "Save defaults"}
               </Button>
+              </div>
             </form>
           </Form>
         </CardContent>

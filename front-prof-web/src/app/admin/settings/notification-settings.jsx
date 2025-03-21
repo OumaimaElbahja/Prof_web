@@ -9,7 +9,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Switch } from "@/components/ui/switch"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
-import { toast } from "@/hooks/use-toast"
+import { toast } from "sonner"
+
 
 const notificationFormSchema = z.object({
   emailNotifications: z.boolean().default(true),
@@ -51,9 +52,8 @@ export function NotificationSettings() {
     setTimeout(() => {
       console.log(data)
       setIsLoading(false)
-      toast({
-        title: "Notification preferences updated",
-        description: "Your notification settings have been saved successfully.",
+      toast("Notifications updated", {
+        description: "Your Notifications information has been updated successfully",
       })
     }, 1000)
   }
@@ -194,42 +194,14 @@ export function NotificationSettings() {
                   )}
                 />
 
-                <FormField
-                  control={form.control}
-                  name="gradeReleases"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
-                      <div className="space-y-0.5">
-                        <FormLabel className="text-base">Grade Releases</FormLabel>
-                        <FormDescription>When grades are published to students.</FormDescription>
-                      </div>
-                      <FormControl>
-                        <Switch checked={field.value} onCheckedChange={field.onChange} />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
 
-                <FormField
-                  control={form.control}
-                  name="systemUpdates"
-                  render={({ field }) => (
-                    <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
-                      <div className="space-y-0.5">
-                        <FormLabel className="text-base">System Updates</FormLabel>
-                        <FormDescription>Updates about new features and improvements.</FormDescription>
-                      </div>
-                      <FormControl>
-                        <Switch checked={field.value} onCheckedChange={field.onChange} />
-                      </FormControl>
-                    </FormItem>
-                  )}
-                />
+                
               </div>
-
+              <div className="flex justify-end">
               <Button type="submit" disabled={isLoading}>
                 {isLoading ? "Saving..." : "Save preferences"}
               </Button>
+              </div>
             </form>
           </Form>
         </CardContent>

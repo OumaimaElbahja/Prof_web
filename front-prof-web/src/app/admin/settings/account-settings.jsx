@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { toast } from "@/hooks/use-toast"
+import { toast } from "sonner"
 import { AlertCircle } from "lucide-react"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import {AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog"
@@ -77,8 +77,7 @@ export function AccountSettings() {
     setTimeout(() => {
       console.log(data)
       setIsPasswordLoading(false)
-      toast({
-        title: "Password updated",
+      toast("Password updated",{
         description: "Your password has been updated successfully.",
       })
       passwordForm.reset(defaultPasswordValues)
@@ -92,8 +91,7 @@ export function AccountSettings() {
     setTimeout(() => {
       console.log(data)
       setIsAccountLoading(false)
-      toast({
-        title: "Account preferences updated",
+      toast("Account preferences updated",{
         description: "Your account preferences have been saved successfully.",
       })
     }, 1000)
@@ -158,10 +156,11 @@ export function AccountSettings() {
                   </FormItem>
                 )}
               />
-
+              <div className="flex justify-end">
               <Button type="submit" disabled={isPasswordLoading}>
                 {isPasswordLoading ? "Updating..." : "Update Password"}
               </Button>
+              </div>
             </form>
           </Form>
         </CardContent>
@@ -252,10 +251,11 @@ export function AccountSettings() {
                   )}
                 />
               </div>
-
+              <div className="flex justify-end">
               <Button type="submit" disabled={isAccountLoading}>
                 {isAccountLoading ? "Saving..." : "Save preferences"}
               </Button>
+              </div>
             </form>
           </Form>
         </CardContent>
@@ -277,9 +277,11 @@ export function AccountSettings() {
           <div className="mt-4">
           <AlertDialog>
       <AlertDialogTrigger asChild>
-      <Button variant="destructive" >
+        <div className="flex justify-end">
+            <Button variant="destructive" >
               Delete Account
             </Button>
+        </div>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>

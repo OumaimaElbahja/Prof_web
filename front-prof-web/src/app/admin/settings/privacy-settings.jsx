@@ -9,7 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Switch } from "@/components/ui/switch"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
-import { toast } from "@/hooks/use-toast"
+import { toast } from "sonner"
 
 const privacyFormSchema = z.object({
   profileVisibility: z.enum(["public", "students", "faculty", "private"], {
@@ -41,6 +41,7 @@ export function PrivacySettings() {
     resolver: zodResolver(privacyFormSchema),
     defaultValues,
   })
+  const watchLateSubmissionPolicy = form.watch("lateSubmissionPolicy")
 
   function onSubmit(data) {
     setIsLoading(true)
@@ -49,8 +50,7 @@ export function PrivacySettings() {
     setTimeout(() => {
       console.log(data)
       setIsLoading(false)
-      toast({
-        title: "Privacy settings updated",
+      toast("Privacy settings updated", {
         description: "Your privacy settings have been saved successfully.",
       })
     }, 1000)
@@ -187,10 +187,11 @@ export function PrivacySettings() {
                   )}
                 />
               </div>
-
+              <div className="flex justify-end">
               <Button type="submit" disabled={isLoading}>
                 {isLoading ? "Saving..." : "Save privacy settings"}
               </Button>
+              </div>
             </form>
           </Form>
         </CardContent>
