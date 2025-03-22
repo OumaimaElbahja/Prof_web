@@ -16,8 +16,9 @@ export default function NotFound() {
 
         <div className="space-y-4">
           <p className="text-lg text-slate-600">
-            Oops! It looks like this lesson doesn't exist. The page you're
-            looking for might have been moved, deleted, or never existed.
+            Oops! It looks like this lesson doesn&apos;t exist. The page
+            you&apos;re looking for might have been moved, deleted, or never
+            existed.
           </p>
 
           <div className="flex flex-col items-center space-y-2">

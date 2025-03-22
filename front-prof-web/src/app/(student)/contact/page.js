@@ -34,41 +34,42 @@ const formSchema = z.object({
   }),
 });
 
-export default function Contactn() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
+export default function Contact() {
+  // const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form =
-    // useForm <
-    // z.infer <
-    // typeof formSchema >>
-    {
-      resolver: zodResolver(formSchema),
-      defaultValues: {
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
-      },
-    };
+  // const form =
+  //   // useForm <
+  //   // z.infer <
+  //   // typeof formSchema >>
+  //   {
+  //     resolver: zodResolver(formSchema),
+  //     defaultValues: {
+  //       name: "",
+  //       email: "",
+  //       subject: "",
+  //       message: "",
+  //     },
+  //   };
 
-  function onSubmit(values) {
-    setIsSubmitting(true);
+  // function onSubmit(values) {
+  //   setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      console.log(values);
-      toast({
-        title: "Message sent",
-        description: "Thank you for your message. I'll get back to you soon.",
-      });
-      form.reset();
-      setIsSubmitting(false);
-    }, 1000);
-  }
+  //   // Simulate form submission
+  //   setTimeout(() => {
+  //     console.log(values);
+  //     toast({
+  //       title: "Message sent",
+  //       description: "Thank you for your message. I'll get back to you soon.",
+  //     });
+  //     form.reset();
+  //     setIsSubmitting(false);
+  //   }, 1000);
+  // }
 
   return (
     <section id="contact" className="py-16 md:py-24">
-      <div className="container">
+      contact form
+      {/* <div className="container">
         <h2 className="text-3xl font-bold tracking-tight mb-8 text-center">
           Contact Me
         </h2>
@@ -199,7 +200,7 @@ export default function Contactn() {
             </Form>
           </div>
         </div>
-      </div>
+      </div> */}
     </section>
   );
 }

@@ -126,7 +126,7 @@ export function PrivacySettings() {
                     <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4">
                       <div className="space-y-0.5">
                         <FormLabel className="text-base">Show Online Status</FormLabel>
-                        <FormDescription>Allow others to see when you're online.</FormDescription>
+                        <FormDescription>Allow others to see when you&apos;re online.</FormDescription>
                       </div>
                       <FormControl>
                         <Switch checked={field.value} onCheckedChange={field.onChange} />
@@ -188,9 +188,9 @@ export function PrivacySettings() {
                 />
               </div>
               <div className="flex justify-end">
-              <Button type="submit" disabled={isLoading}>
-                {isLoading ? "Saving..." : "Save privacy settings"}
-              </Button>
+                <Button type="submit" disabled={isLoading}>
+                  {isLoading ? "Saving..." : "Save privacy settings"}
+                </Button>
               </div>
             </form>
           </Form>
