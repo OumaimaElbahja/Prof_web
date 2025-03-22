@@ -19,8 +19,6 @@ import { Toaster } from "sonner";
 // };
 
 export default function RootLayout({ children }) {
-  // const pathname = usePathname();
-  // const isAdmin = pathname.startsWith("/admin");
   return (
     <>
       <NavBar />
