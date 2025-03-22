@@ -9,6 +9,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge"
 import { BookOpen, Edit, FileText, Link as LinkIcon, ImageIcon, MoreHorizontal, Search, Trash2, Video } from "lucide-react"
 import Link from "next/link"
+import { motion } from "framer-motion"
 
 const ITEMS_PER_PAGE = 9 // Adjust this value as needed
 
@@ -193,8 +194,26 @@ export function CourseList({ courses, onEdit, onDelete }) {
             )}
             {
                 hasMore && (
-                    <div className="flex justify-center py-4">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                    <div className="flex items-center p-8 rounded-lg opacity-100 justify-center gap-2">
+                        {[...Array(4)].map((_, i) => (
+                            <motion.div
+                                key={i}
+                                className="h-3 w-3 rounded-full bg-primary"
+                                initial={{ x: 0, y: 0 }}
+                                animate={{
+                                    x: [0, 10, -10, 0],
+                                    y: [0, -10, 0],
+                                    opacity: [0.5, 1, 0.5],
+                                    scale: [1, 1.2, 1],
+                                }}
+                                transition={{
+                                    duration: 1.5,
+                                    repeat: Infinity,
+                                    delay: i * 0.2,
+                                    ease: "easeInOut",
+                                }}
+                            />
+                        ))}
                     </div>
                 )
             }
