@@ -1,57 +1,41 @@
 import { Button } from "@/components/ui/button";
+import { BookX, Home } from "lucide-react";
 import Link from "next/link";
 
 export default function NotFound() {
   return (
-    <section className=" ">
-      <div className="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
-        <div className="wf-ull lg:w-1/2">
-          <p className="text-sm font-medium text-primary">404 error</p>
-          <h1 className="mt-3 text-2xl font-semibold  md:text-3xl">
-            Page not found
-          </h1>
-          <p className="mt-4 text-gray-500 dark:text-gray-400">
-            Sorry, the page you are looking for doesn't exist.Here are some
-            helpful links:
+    <div className="flex min-h-[100dvh] flex-col items-center justify-center  px-4 text-center">
+      <div className="mx-auto flex max-w-md flex-col items-center space-y-6">
+        <div className="rounded-full bg-red-100 p-6">
+          <BookX className="h-12 w-12 text-red-600" aria-hidden="true" />
+        </div>
+
+        <h1 className="text-4xl font-bold tracking-tight text-slate-900">
+          Page Not Found
+        </h1>
+
+        <div className="space-y-4">
+          <p className="text-lg text-slate-600">
+            Oops! It looks like this lesson doesn't exist. The page you're
+            looking for might have been moved, deleted, or never existed.
           </p>
 
-          <div className="flex items-center mt-6 gap-x-3">
-            <Button
-              variant={"outline"}
-              className="flex items-center justify-center w-1/2 px-5 py-2 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto dark:hover:bg-gray-800 dark:bg-gray-900 hover:bg-gray-100 dark:text-gray-200 dark:border-gray-700"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth="1.5"
-                stroke="currentColor"
-                className="w-5 h-5 rtl:rotate-180"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M6.75 15.75L3 12m0 0l3.75-3.75M3 12h18"
-                />
-              </svg>
-
-              <span>Go back</span>
-            </Button>
-
-            <Button className="w-1/2 px-5 py-2 text-sm tracking-wide transition-colors duration-200  rounded-lg shrink-0 sm:w-auto  ">
-              <Link href="/">Take me home</Link>
-            </Button>
+          <div className="flex flex-col items-center space-y-2">
+            <p className="text-sm text-slate-500">Error code: 404</p>
+            <div className="h-px w-16 bg-slate-200" />
+            <p className="text-sm text-slate-500">
+              Please check the URL or return to the homepage
+            </p>
           </div>
         </div>
 
-        <div className="relative w-full mt-12 lg:w-1/2 lg:mt-0">
-          {/* <img
-            className="w-full max-w-lg lg:mx-auto"
-            src="/images/components/illustration.svg"
-            alt=""
-          /> */}
-        </div>
+        <Button asChild size="lg" className="gap-2">
+          <Link href="/">
+            <Home className="h-4 w-4" />
+            <span>Back to Homepage</span>
+          </Link>
+        </Button>
       </div>
-    </section>
+    </div>
   );
 }
