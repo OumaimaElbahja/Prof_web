@@ -53,8 +53,8 @@ export default function About() {
                       I received my Ph.D. in Computer Science from Stanford
                       University in 2008, where my research focused on neural
                       networks and deep learning algorithms. Prior to that, I
-                      earned my Master's degree from MIT and my Bachelor's from
-                      UC Berkeley.
+                      earned my Master&apos;s degree from MIT and my
+                      Bachelor&apos;s from UC Berkeley.
                     </p>
                     <p>
                       Outside of academia, I serve as a consultant for several
@@ -109,7 +109,7 @@ export default function About() {
                         <p className="font-medium">
                           Smith, J., Johnson, A., & Lee, K. (2023)
                         </p>
-                        <p>"Advances in Explainable AI for Medical Imaging"</p>
+                        <p>Advances in Explainable AI for Medical Imaging</p>
                         <p className="text-sm text-muted-foreground">
                           Journal of Artificial Intelligence in Medicine, 45(2),
                           112-128
@@ -119,7 +119,7 @@ export default function About() {
                         <p className="font-medium">
                           Smith, J., & Williams, R. (2022)
                         </p>
-                        <p>"Ethical Considerations in Deploying AI Systems"</p>
+                        <p>Ethical Considerations in Deploying AI Systems</p>
                         <p className="text-sm text-muted-foreground">
                           Proceedings of the International Conference on AI
                           Ethics, 78-92
@@ -130,8 +130,8 @@ export default function About() {
                           Brown, T., Smith, J., & Davis, M. (2021)
                         </p>
                         <p>
-                          "Neural Networks for Real-time Object Detection: A
-                          Comparative Study"
+                          Neural Networks for Real-time Object Detection: A
+                          Comparative Study
                         </p>
                         <p className="text-sm text-muted-foreground">
                           IEEE Transactions on Pattern Analysis and Machine
@@ -140,9 +140,7 @@ export default function About() {
                       </li>
                       <li>
                         <p className="font-medium">Smith, J. (2020)</p>
-                        <p>
-                          "The Future of Human-AI Collaboration in Education"
-                        </p>
+                        <p>The Future of Human-AI Collaboration in Education</p>
                         <p className="text-sm text-muted-foreground">
                           Educational Technology & Society, 23(4), 45-61
                         </p>

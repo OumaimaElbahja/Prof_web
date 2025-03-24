@@ -5,16 +5,27 @@ import {
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
+    SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { Calendar, Home, Inbox, Settings } from "lucide-react"
-import { SiCoursera } from "react-icons/si";
+import {
+    BarChart3,
+    BookOpen,
+    Calendar,
+    GraduationCap,
+    LayoutDashboard,
+    MessageSquare,
+    Settings,
+    Users,
+} from "lucide-react"
+import { PiGraduationCapFill } from "react-icons/pi";
 
-import { NavUser } from "./nav-user"
+
+import { NavUser } from "../../../components/ui/nav-user"
 import Link from "next/link"
-
+import { Separator } from "@/components/ui/separator"
 const user = {
     name: "shadcn",
     email: "m@example.com",
@@ -23,25 +34,42 @@ const user = {
 
 const items = [
     {
-        title: "Home",
+        title: "Dashboard",
         url: "/admin",
-        icon: Home,
-    },
-    {
-        title: "Inbox",
-        url: "#",
-        icon: Inbox,
-    },
-    {
-        title: "Calendar",
-        url: "#",
-        icon: Calendar,
+        icon: LayoutDashboard,
     },
     {
         title: "Courses",
         url: "/admin/courses",
-        icon: SiCoursera,
-    }, {
+        icon: BookOpen,
+    },
+    {
+        title: "Students",
+        url: "/admin/students",
+        icon: Users,
+    },
+    {
+        title: "Assignments",
+        url: "/admin/assignments",
+        icon: GraduationCap,
+    },
+    {
+        title: "Grades",
+        url: "#",
+        icon: BarChart3,
+    },
+    {
+        title: "Schedule",
+        url: "#",
+        icon: Calendar,
+    },
+    {
+        title: "Messages",
+        url: "#",
+        icon: MessageSquare,
+    },
+
+    {
         title: "Settings",
         url: "/admin/settings",
         icon: Settings,
@@ -50,9 +78,26 @@ const items = [
 export function AppSidebar() {
     return (
         <Sidebar collapsible="icon" >
+
+            <SidebarHeader
+            >
+                <SidebarMenu >
+                    <SidebarMenuItem >
+                        <SidebarMenuButton asChild>
+                            <Link href="/admin" >
+                                <PiGraduationCapFill className="h-12 w-12" />
+
+                                <span >Prof Web</span>
+                            </Link>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+                </SidebarMenu>
+
+            </SidebarHeader>
             <SidebarContent>
+
                 <SidebarGroup>
-                    <SidebarGroupLabel>Application</SidebarGroupLabel>
+                    {/* <SidebarGroupLabel className={'h-2'}><Separator /></SidebarGroupLabel> */}
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {items.map((item) => (
