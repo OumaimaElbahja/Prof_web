@@ -1,41 +1,130 @@
+'use client'
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { toast } from "sonner"
+import Link from "next/link"
+import { useState } from "react"
+import { axiosClient } from "@/app/api/axios"
+import { Loader, Loader2 } from "lucide-react"
+import { useRouter } from "next/navigation"
+
+
+const loginSchema = z.object({
+
+    email: z.string().email({
+        message: "Please enter a valid email address.",
+    }),
+    password: z.string().min(8, {
+        message: "Password must be at least 8 characters.",
+    }),
+})
+
+
+const defaultLoginValues = {
+    email: "noureddine@gmail.com",
+    password: "Pa$$w0rd!",
+}
+
 
 export function LoginForm({
     className,
     ...props
 }) {
+
+    const loginForm = useForm({
+        resolver: zodResolver(loginSchema),
+        defaultValues: defaultLoginValues,
+    })
+
+    const router = useRouter();
+    async function onLogin(data) {
+        try {
+            const csrf = await axiosClient.get('/sanctum/csrf-cookie')
+            const response = await axiosClient.post('/login', data);
+
+            if (response.status == 204) {
+
+
+                toast.success('Login successful', {
+                })
+                loginForm.reset(defaultLoginValues)
+                router.push('/admin')
+
+
+            }
+        }
+        catch (error) {
+
+            toast.error(error.message,
+            )
+        }
+
+
+    }
     return (
-        <form className={cn("flex flex-col gap-6", className)} {...props}>
-            <div className="flex flex-col items-center gap-2 text-center">
-                <h1 className="text-2xl font-bold">Login to your account</h1>
-                <p className="text-balance text-sm text-muted-foreground">
-                    Enter your email below to login to your account
-                </p>
-            </div>
-            <div className="grid gap-6">
-                <div className="grid gap-2">
-                    <Label htmlFor="email">Email</Label>
-                    <Input id="email" type="email" placeholder="m@example.com" required />
+        <Form {...loginForm}>
+            <form onSubmit={loginForm.handleSubmit(onLogin)} className={cn("flex flex-col gap-6", className)} {...props}>
+                <div className="flex flex-col items-center gap-2 text-center">
+                    <h1 className="text-2xl font-bold">Login to your account</h1>
+                    <p className="text-balance text-sm text-muted-foreground">
+                        Enter your email below to login to your account
+                    </p>
                 </div>
-                <div className="grid gap-2">
-                    <div className="flex items-center">
-                        <Label htmlFor="password">Password</Label>
-                        <a
-                            href="#"
-                            className="ml-auto text-sm underline-offset-4 hover:underline"
-                        >
-                            Forgot your password?
-                        </a>
+
+                <div className="grid gap-6">
+                    <div className="grid gap-2">
+                        <FormField
+                            control={loginForm.control}
+                            name="email"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Email</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="your.email@example.com" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
                     </div>
-                    <Input id="password" type="password" required />
-                </div>
-                <Button type="submit" className="w-full">
-                    Login
-                </Button>
-                {/* <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
+                    <div className="grid gap-2">
+                        <div className="">
+                            <FormField
+                                control={loginForm.control}
+                                name="password"
+                                className='w-full'
+                                render={({ field }) => (
+                                    <FormItem>
+                                        <FormLabel>New Password</FormLabel>
+
+                                        <FormControl>
+                                            <Input type="password" placeholder="••••••••" {...field} />
+                                        </FormControl>
+
+                                        <FormMessage />
+                                        <Link
+                                            href="/forgot-password"
+                                            className="ml-auto text-sm underline-offset-4 hover:underline"
+                                        >
+                                            Forgot your password?
+                                        </Link>
+                                    </FormItem>
+                                )}
+                            />
+
+                        </div>
+                    </div>
+                    <div className=" w-full">
+                        <Button type="submit" className={'w-full'} disabled={loginForm.formState.isSubmitting}>
+                            {loginForm.formState.isSubmitting ? <><Loader2 className="animate-spin" /> login...</> : "Login"}
+                        </Button>
+                    </div>
+                    {/* <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
                     <span className="relative z-10 bg-background px-2 text-muted-foreground">
                         Or continue with
                     </span>
@@ -49,13 +138,22 @@ export function LoginForm({
                     </svg>
                     Login with GitHub
                 </Button> */}
-            </div>
-            <div className="text-center text-sm">
-                Don&apos;t have an account?{" "}
-                <a href="/signup" className="underline underline-offset-4">
-                    Sign up
-                </a>
-            </div>
-        </form>
+                </div>
+
+
+
+
+
+                <div className="text-center text-sm">
+                    Don&apos;t have an account?{" "}
+                    <a href="/register" className="underline underline-offset-4">
+                        Sign up
+                    </a>
+                </div>
+            </form>
+        </Form>
+
+
+
     )
 }
