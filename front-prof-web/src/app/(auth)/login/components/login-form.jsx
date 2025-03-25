@@ -12,6 +12,8 @@ import { useState } from "react"
 import { axiosClient } from "@/app/api/axios"
 import { Loader, Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation"
+import AdminDashboard from "@/app/admin/page"
+// import { cookies } from 'next/headers'
 
 
 const loginSchema = z.object({
@@ -50,6 +52,7 @@ export function LoginForm({
             if (response.status == 204) {
 
 
+
                 toast.success('Login successful', {
                 })
                 loginForm.reset(defaultLoginValues)
@@ -59,13 +62,16 @@ export function LoginForm({
             }
         }
         catch (error) {
-
+            loginForm.setError('email', {
+                message: error.response.data.errors.email.join()
+            })
             toast.error(error.message,
             )
         }
 
 
     }
+
     return (
         <Form {...loginForm}>
             <form onSubmit={loginForm.handleSubmit(onLogin)} className={cn("flex flex-col gap-6", className)} {...props}>
