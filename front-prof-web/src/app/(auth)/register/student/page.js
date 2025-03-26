@@ -5,7 +5,12 @@ import React from "react";
 import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, CheckCircle2 } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  CheckCircle2,
+  GraduationCap,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -30,7 +35,8 @@ import Image from "next/image";
 export default function StudentRegistration() {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
-    fullName: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -52,7 +58,11 @@ export default function StudentRegistration() {
 
   const isStepValid = () => {
     if (step === 1) {
-      return formData.fullName.trim() !== "" && formData.email.includes("@");
+      return (
+        formData.firstName.trim() !== "" &&
+        formData.email.includes("@") &&
+        formData.lastName.trim() !== ""
+      );
     } else if (step === 2) {
       return (
         formData.password.length >= 8 &&
@@ -66,12 +76,20 @@ export default function StudentRegistration() {
     <>
       <div className="grid lg:grid-cols-2 h-screen">
         <div className="relative hidden bg-muted lg:block">
-          <Image
-            src="/loginImage.svg"
-            alt="Login Icon"
-            className="object-cover scale-75 w-full h-full dark:brightness-[0.2] dark:grayscale"
-            fill
-          />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-primary/5 backdrop-blur-sm"></div>
+          <div className="relative z-10 flex items-center justify-center h-full">
+            <div className="text-center space-y-6 max-w-md px-8">
+              <GraduationCap className="h-24 w-24 mx-auto text-primary" />
+              <h2 className="text-4xl font-bold text-slate-900 dark:text-white">
+                Shape Your Future
+              </h2>
+              <p className="text-slate-600 dark:text-slate-300">
+                Embark on your educational journey with us. Discover new
+                opportunities, expand your knowledge, and transform your
+                potential into remarkable achievements.
+              </p>
+            </div>
+          </div>
         </div>
         <div className="flex items-center justify-center ">
           <Card className="w-full max-w-md mx-auto backdrop-blur-md shadow-none  border-0 m-0  ">
@@ -112,17 +130,33 @@ export default function StudentRegistration() {
                 {step === 1 && (
                   <>
                     <div className="space-y-2">
-                      <Label htmlFor="fullName">Full Name</Label>
+                      <Label htmlFor="firstName">Fisrt Name</Label>
                       <div className="relative">
                         <Input
-                          id="fullName"
-                          name="fullName"
-                          value={formData.fullName}
+                          id="firstName"
+                          name="firstName"
+                          value={formData.firstName}
                           onChange={handleChange}
                           placeholder="Enter your full name"
                           className="transition-all focus:ring-2 focus:ring-primary/50"
                         />
-                        {formData.fullName && (
+                        {formData.firstName && (
+                          <CheckCircle2 className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-green-500" />
+                        )}
+                      </div>
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="lastName">Last Name</Label>
+                      <div className="relative">
+                        <Input
+                          id="lastName"
+                          name="lastName"
+                          value={formData.lastName}
+                          onChange={handleChange}
+                          placeholder="Enter your full name"
+                          className="transition-all focus:ring-2 focus:ring-primary/50"
+                        />
+                        {formData.lastName && (
                           <CheckCircle2 className="absolute right-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-green-500" />
                         )}
                       </div>
@@ -247,7 +281,7 @@ export default function StudentRegistration() {
                   <ArrowLeft className="mr-2 h-4 w-4" /> Back
                 </Button>
               ) : (
-                <Link href="/">
+                <Link href="/login">
                   <Button variant="outline">
                     <ArrowLeft className="mr-2 h-4 w-4" /> Cancel
                   </Button>
