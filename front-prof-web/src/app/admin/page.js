@@ -1,10 +1,47 @@
+"use client"; // ✅ Ensure it's a client component
+import { useEffect, useState } from "react";
 import React from "react";
 import { ClassesOverview } from "./components/classes-overview";
 import { UpcomingEvents } from "./components/upcoming-events";
 import { RecentAssignments } from "./components/recent-assignments";
 import { StudentPerformance } from "./components/student-performance";
+import { axiosClient } from "../api/axios";
+// import { getUser } from "../api/auth/auth";
+// import { axiosClient } from "../api/axios";
+// import { cookies } from "next/headers";
 
-export default function page() {
+export default function AdminDashboard() {
+  // const cookieStore = await cookies(); // ✅ Await before using
+  // const laravelSession = cookieStore.get("laravel_session");
+  // console.log("Laravel Session:", laravelSession);
+  // await axiosClient.get("/sanctum/csrf-cookie"); // Ensures Laravel recognizes session
+  // try {
+  //   const response = await axiosClient.get("/api/user");
+  //   console.log("User data:", response.data);
+  // } catch (error) {
+  //   console.error("Auth check failed:", error);
+  // }
+  // const user = await getUser();
+  // console.log("User:", user);
+  // const [user, setUser] = useState(null);
+
+  // useEffect(() => {
+  //   const fetchUser = async () => {
+  //     try {
+  //       // await axiosClient.get("/sanctum/csrf-cookie"); // Ensure CSRF token is set
+  //       const response = await axiosClient.get("/api/user");
+  //       console.log("User data:", response.data);
+
+  //       setUser(response.data);
+  //     } catch (error) {
+  //       toast.error("Failed to fetch user");
+  //       console.error("Auth check failed:", error);
+  //     }
+  //   };
+
+  //   fetchUser();
+  // }, []);
+
   return (
     <main className="flex-1 bg-muted/30">
       <div className="mx-auto max-w-7xl space-y-8">
