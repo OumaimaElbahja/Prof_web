@@ -7,9 +7,9 @@ export default function LoginPage() {
 <div className="grid grid-cols-2 h-screen">
   <div className="relative">
     <Image
-      src="/login.jpg"
+      src="/login.svg"
       alt="Login Icon"
-      className="object-cover w-full h-full dark:brightness-[0.2] dark:grayscale"
+      className="object-cover w-full h-full scale-75 dark:brightness-[0.2] dark:grayscale"
       fill
     />
   </div>
