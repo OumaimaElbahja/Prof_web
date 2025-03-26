@@ -13,6 +13,7 @@ import { axiosClient } from "@/app/api/axios"
 import { Loader, Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation"
 import AdminDashboard from "@/app/admin/page"
+import DialogRegistration from "./dialog-registration"
 // import { cookies } from 'next/headers'
 
 
@@ -152,9 +153,7 @@ export function LoginForm({
 
                 <div className="text-center text-sm">
                     Don&apos;t have an account?{" "}
-                    <a href="/register" className="underline underline-offset-4">
-                        Sign up
-                    </a>
+                    <DialogRegistration />
                 </div>
             </form>
         </Form>

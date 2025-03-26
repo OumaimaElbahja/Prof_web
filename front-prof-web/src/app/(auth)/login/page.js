@@ -3,8 +3,8 @@ import { LoginForm } from "./components/login-form";
 export default function LoginPage() {
   return (
     <>
-      <div className="grid grid-cols-2 h-screen">
-        <div className="relative bg-secondary">
+      <div className="grid lg:grid-cols-2 h-screen">
+        <div className="relative hidden bg-muted lg:block">
           <Image
             src="/loginImage.svg"
             alt="Login Icon"
