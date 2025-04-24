@@ -5,7 +5,8 @@ export default function RootLayout({ children }) {
   return (
     <>
       <NavBar />
-      {children}
+      <div className="container mx-auto p-16">{children}</div>
+      
       <Toaster />
     </>
   );
