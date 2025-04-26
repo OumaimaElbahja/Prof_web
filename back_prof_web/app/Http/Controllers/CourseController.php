@@ -2,57 +2,62 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
-{   
-    public function index()
-    {
-        return Course::all();
-    }
-
+{
+    
     public function store(Request $request)
     {
-        $course = Course::create($request->only(['title', 'description', 'access_code', 'syllabus']));
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'access_code' => 'nullable|string|max:255',
+            'syllabus' => 'nullable|string',
+        ]);
+
+        $course = Course::create($validated);
+
         return response()->json($course, 201);
     }
 
-    public function show($id)
+    
+    public function index()
     {
-        return Course::findOrFail($id);
+        $courses = Course::all();
+        return response()->json($courses);
     }
 
-    public function update(Request $request, $id)
+    
+    public function show($id)
     {
         $course = Course::findOrFail($id);
-        $course->update($request->only(['title', 'description', 'access_code', 'syllabus']));
         return response()->json($course);
     }
 
+    
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'title' => 'sometimes|required|string|max:255',
+            'description' => 'nullable|string',
+            'access_code' => 'nullable|string|max:255',
+            'syllabus' => 'nullable|string',
+        ]);
+
+        $course = Course::findOrFail($id);
+        $course->update($validated);
+
+        return response()->json($course);
+    }
+
+    
     public function destroy($id)
     {
-        Course::destroy($id);
+        $course = Course::findOrFail($id);
+        $course->delete();
+
         return response()->json(null, 204);
-    }
-
-    public function addResource($id)
-    {
-        $course = Course::findOrFail($id);
-        $course->addResource();
-        return response()->json(['message' => 'Resource added']);
-    }
-
-    public function publishAnnouncement($id)
-    {
-        $course = Course::findOrFail($id);
-        $course->publishAnnouncement();
-        return response()->json(['message' => 'Announcement published']);
-    }
-
-    public function createAssignment($id)
-    {
-        $course = Course::findOrFail($id);
-        $course->createAssignment();
-        return response()->json(['message' => 'Assignment created']);
     }
 }

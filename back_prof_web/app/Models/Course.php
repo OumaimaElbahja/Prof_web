@@ -18,19 +18,5 @@ class Course extends Model
         'syllabus',
     ];
 
-    public function addResource(array $data)
-    {
-        return $this->resource()->create($data);
-    }
-
-    public function publishAnnouncement()
-    {
-        
-    }
-
-    public function createAssignment()
-    {
-        
-    }
 }
 
