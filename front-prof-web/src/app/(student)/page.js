@@ -1,19 +1,25 @@
+
 import Link from "next/link"
 import { CalendarDays, BookOpen, FileText, MessageSquare, Bell } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { ModeToggle } from "@/components/ui/mode_toggle"
 
 export default function StudentDashboard() {
   return (
     <div className="container mx-auto py-6 space-y-6">
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold tracking-tight">Tableau de bord étudiant</h1>
+        <div className="space-x-2 ">
         <Button variant="outline" size="icon">
           <Bell className="h-4 w-4" />
           <span className="sr-only">Notifications</span>
         </Button>
+        <ModeToggle />
+        </div>
+        
       </div>
 
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
