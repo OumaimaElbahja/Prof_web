@@ -1,4 +1,4 @@
-"use client"; // ✅ Client Component
+"use client";
 
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { Toaster } from "sonner";
@@ -9,41 +9,64 @@ import { useEffect, useState } from "react";
 import Loading from "../loading";
 import { axiosClient } from "../api/axios";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
+import UserContext, { useUserContext } from "@/context/UserContext";
 
 export default function RootLayout({ children }) {
-  const [user, setUser] = useState(null);
+  const [user, setUserData] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const router = useRouter();
+  const context = useUserContext();
   useEffect(() => {
-    const fetchUser = async () => {
+    const checkAuthAndFetchUser = async () => {
       try {
+        if (typeof window === "undefined") return;
+        console.log(context.authenticated);
+
+        const authData = localStorage.getItem("auth");
+
+        if (!authData) {
+          setLoading(false);
+          return;
+        }
+
         const response = await axiosClient.get("/api/user");
-        console.log("User data:", response.data);
-        setUser(response.data);
+        console.log("user response", response.data);
+
+        context.setUser(response.data);
+        setUserData(response.data);
+
+        console.log("hello", context.user);
       } catch (error) {
-        toast.error("Failed to fetch user");
         console.error("Auth check failed:", error);
+        toast.error("Session expired. Please login again.");
+        localStorage.removeItem("auth");
+        router.push("/login");
       } finally {
         setLoading(false);
       }
     };
 
-    fetchUser();
-  }, []);
+    checkAuthAndFetchUser();
+  }, [router, context]);
 
-  if (loading) return <Loading />;
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <>
       {user ? (
-        <SidebarProvider>
-          <AppSidebar />
-          <AppSidebarInset>{children}</AppSidebarInset>
-        </SidebarProvider>
+        <UserContext>
+          <SidebarProvider>
+            <AppSidebar />
+            <AppSidebarInset>{children}</AppSidebarInset>
+          </SidebarProvider>
+        </UserContext>
       ) : (
         <LoginPage />
       )}
-      <Toaster />
+      <Toaster position="top-center" richColors />{" "}
     </>
   );
 }

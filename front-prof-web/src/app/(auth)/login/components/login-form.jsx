@@ -5,16 +5,14 @@ import { Input } from "@/components/ui/input"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { toast } from "sonner"
 import Link from "next/link"
-import { useState } from "react"
-import { axiosClient } from "@/app/api/axios"
-import { Loader, Loader2 } from "lucide-react"
+import { Loader2 } from "lucide-react"
 import { useRouter } from "next/navigation"
-import AdminDashboard from "@/app/admin/page"
 import DialogRegistration from "./dialog-registration"
-// import { cookies } from 'next/headers'
+import { useUserContext } from "@/context/UserContext"
+import { authApi } from "@/app/api/auth/auth"
 
 
 const loginSchema = z.object({
@@ -45,27 +43,34 @@ export function LoginForm({
     })
 
     const router = useRouter();
+    const { setAuthenticated } = useUserContext()
+
     async function onLogin(data) {
         try {
-            const csrf = await axiosClient.get('/sanctum/csrf-cookie')
-            const response = await axiosClient.post('/login', data);
+            await authApi.getCsrfToken();
+
+            const response = await authApi.login(data);
 
             if (response.status == 204) {
 
 
-
-                toast.success('Login successful', {
-                })
+                localStorage.setItem("auth", true)
+                setAuthenticated(true);
+                toast.success('Login successful')
                 loginForm.reset(defaultLoginValues)
                 router.push('/admin')
 
 
             }
         }
+
         catch (error) {
-            loginForm.setError('email', {
-                message: error.response.data.errors.email.join()
-            })
+            if (error.response) {
+
+                loginForm.setError('email', {
+                    message: error.response?.data?.errors?.email.join()
+                })
+            }
             toast.error(error.message,
             )
         }
@@ -107,7 +112,7 @@ export function LoginForm({
                                 className='w-full'
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>New Password</FormLabel>
+                                        <FormLabel>Password</FormLabel>
 
                                         <FormControl>
                                             <Input type="password" placeholder="••••••••" {...field} />

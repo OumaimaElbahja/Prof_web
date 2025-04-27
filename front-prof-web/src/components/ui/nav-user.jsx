@@ -8,12 +8,13 @@ import {
     LogOut,
     Sparkles,
 } from "lucide-react"
-
 import {
     Avatar,
     AvatarFallback,
     AvatarImage,
 } from "@/components/ui/avatar"
+
+import { toast } from "sonner"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -29,11 +30,23 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from "@/components/ui/sidebar"
+import { useUserContext } from "@/context/UserContext";
 
 export function NavUser({
     user,
 }) {
     const { isMobile } = useSidebar()
+
+    const { logout } = useUserContext()
+    const handleLogout = async () => {
+        try {
+            logout()
+
+        } catch (error) {
+            toast.error('Logout failed:', { error })
+        }
+
+    };
 
     return (
         <SidebarMenu>
@@ -96,7 +109,7 @@ export function NavUser({
                             </DropdownMenuItem>
                         </DropdownMenuGroup>
                         <DropdownMenuSeparator />
-                        <DropdownMenuItem>
+                        <DropdownMenuItem onClick={handleLogout}>
                             <LogOut />
                             Log out
                         </DropdownMenuItem>
