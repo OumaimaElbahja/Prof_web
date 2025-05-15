@@ -2,7 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\DevoirController;
+use App\Http\Controllers\CourseController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,11 +18,4 @@ use App\Http\Controllers\DevoirController;
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     return $request->user();
 });
-
-
-
-
-Route::post('/devoirs', [DevoirController::class, 'store']);
-Route::get('/devoirs', [DevoirController::class, 'index']);
-
-
+Route::apiResource('courses', CourseController::class);
