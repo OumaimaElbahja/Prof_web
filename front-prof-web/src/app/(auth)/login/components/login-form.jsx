@@ -13,7 +13,7 @@ import { useRouter } from "next/navigation"
 import DialogRegistration from "./dialog-registration"
 import { useUserContext } from "@/context/UserContext"
 import { authApi } from "@/app/api/auth/auth"
-
+import { useEffect } from "react" 
 
 const loginSchema = z.object({
 
@@ -37,12 +37,17 @@ export function LoginForm({
     ...props
 }) {
 
+    const router = useRouter();
+    useEffect(() => {
+        if (localStorage.getItem('auth')) {
+            router.push('/admin')
+        }
+    }, [router])
     const loginForm = useForm({
         resolver: zodResolver(loginSchema),
         defaultValues: defaultLoginValues,
     })
 
-    const router = useRouter();
     const { setAuthenticated } = useUserContext()
 
     async function onLogin(data) {
@@ -77,6 +82,7 @@ export function LoginForm({
 
 
     }
+   
 
     return (
         <Form {...loginForm}>
