@@ -16,9 +16,9 @@ export function NavBar({
       url: '/',
       icon: Home
     },
-    { name: 'About', url: '/about', icon: User },
+    //{ name: 'About', url: '/about', icon: User },
     { name: 'Courses', url: '/courses', icon: Briefcase },
-    { name: 'Publication', url: '/publication', icon: FileText },
+    { name: 'Publication', url: '/publications', icon: FileText },
     { name: 'Forum', url: '/forum', icon: FileText },
     { name: 'Contact', url: '/contact', icon: FileText },
     { name: 'Login', url: '/login', icon: FileText }
