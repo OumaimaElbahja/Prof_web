@@ -69,7 +69,7 @@ const sampleMessages = [
 export function MessagePanel() {
   const [messages, setMessages] = useState(sampleMessages)
   const [newMessage, setNewMessage] = useState("")
-  const messagesEndRef = useRef<HTMLDivElement>(null)
+  const messagesEndRef = useRef(null)
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -82,7 +82,7 @@ export function MessagePanel() {
   const handleSendMessage = () => {
     if (newMessage.trim() === "") return
 
-    const message= {
+    const message = {
       id: `msg${messages.length + 1}`,
       content: newMessage,
       sender: "me",
@@ -125,7 +125,7 @@ export function MessagePanel() {
   }
 
   // Group messages by date
-  const groupedMessages  = {}
+  const groupedMessages = {}
   messages.forEach((message) => {
     const dateKey = formatDate(message.timestamp)
     if (!groupedMessages[dateKey]) {
@@ -189,15 +189,13 @@ export function MessagePanel() {
                   </Avatar>
                 )}
                 <div
-                  className={`max-w-[80%] rounded-lg p-3 ${
-                    message.sender === "me" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
-                  }`}
+                  className={`max-w-[80%] rounded-lg p-3 ${message.sender === "me" ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
+                    }`}
                 >
                   <div>{message.content}</div>
                   <div
-                    className={`text-xs mt-1 ${
-                      message.sender === "me" ? "text-primary-foreground/70" : "text-muted-foreground/70"
-                    }`}
+                    className={`text-xs mt-1 ${message.sender === "me" ? "text-primary-foreground/70" : "text-muted-foreground/70"
+                      }`}
                   >
                     {formatTime(message.timestamp)}
                   </div>

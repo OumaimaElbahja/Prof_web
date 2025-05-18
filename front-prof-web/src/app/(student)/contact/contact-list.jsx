@@ -11,7 +11,7 @@ import { Search, Plus } from "lucide-react"
 
 
 
-const professors= [
+const professors = [
   {
     id: "prof1",
     name: "Dr. Jane Smith",
@@ -120,7 +120,7 @@ export function ContactList() {
   const [searchQuery, setSearchQuery] = useState("")
   const [selectedContact, setSelectedContact] = useState(null)
 
-  const filterContacts = (contactsu) => {
+  const filterContacts = (contacts) => {
     return contacts.filter(
       (contact) =>
         contact.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -172,9 +172,8 @@ export function ContactList() {
                 filterContacts(professors).map((professor) => (
                   <div
                     key={professor.id}
-                    className={`flex items-center gap-3 rounded-lg p-2 cursor-pointer hover:bg-accent ${
-                      selectedContact === professor.id ? "bg-accent" : ""
-                    }`}
+                    className={`flex items-center gap-3 rounded-lg p-2 cursor-pointer hover:bg-accent ${selectedContact === professor.id ? "bg-accent" : ""
+                      }`}
                     onClick={() => handleContactClick(professor.id)}
                   >
                     <div className="relative">
@@ -183,15 +182,14 @@ export function ContactList() {
                         <AvatarFallback>{professor.name.substring(0, 2)}</AvatarFallback>
                       </Avatar>
                       <span
-                        className={`absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-background ${
-                          professor.status === "online"
+                        className={`absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-background ${professor.status === "online"
                             ? "bg-green-500"
                             : professor.status === "away"
                               ? "bg-yellow-500"
                               : professor.status === "busy"
                                 ? "bg-red-500"
                                 : "bg-gray-500"
-                        }`}
+                          }`}
                       />
                     </div>
                     <div className="flex-1 overflow-hidden">
@@ -222,9 +220,8 @@ export function ContactList() {
                 filterContacts(classmates).map((classmate) => (
                   <div
                     key={classmate.id}
-                    className={`flex items-center gap-3 rounded-lg p-2 cursor-pointer hover:bg-accent ${
-                      selectedContact === classmate.id ? "bg-accent" : ""
-                    }`}
+                    className={`flex items-center gap-3 rounded-lg p-2 cursor-pointer hover:bg-accent ${selectedContact === classmate.id ? "bg-accent" : ""
+                      }`}
                     onClick={() => handleContactClick(classmate.id)}
                   >
                     <div className="relative">
@@ -233,15 +230,14 @@ export function ContactList() {
                         <AvatarFallback>{classmate.name.substring(0, 2)}</AvatarFallback>
                       </Avatar>
                       <span
-                        className={`absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-background ${
-                          classmate.status === "online"
+                        className={`absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-background ${classmate.status === "online"
                             ? "bg-green-500"
                             : classmate.status === "away"
                               ? "bg-yellow-500"
                               : classmate.status === "busy"
                                 ? "bg-red-500"
                                 : "bg-gray-500"
-                        }`}
+                          }`}
                       />
                     </div>
                     <div className="flex-1 overflow-hidden">
@@ -277,9 +273,8 @@ export function ContactList() {
                 filterContacts(support).map((supportContact) => (
                   <div
                     key={supportContact.id}
-                    className={`flex items-center gap-3 rounded-lg p-2 cursor-pointer hover:bg-accent ${
-                      selectedContact === supportContact.id ? "bg-accent" : ""
-                    }`}
+                    className={`flex items-center gap-3 rounded-lg p-2 cursor-pointer hover:bg-accent ${selectedContact === supportContact.id ? "bg-accent" : ""
+                      }`}
                     onClick={() => handleContactClick(supportContact.id)}
                   >
                     <div className="relative">
@@ -288,9 +283,8 @@ export function ContactList() {
                         <AvatarFallback>{supportContact.name.substring(0, 2)}</AvatarFallback>
                       </Avatar>
                       <span
-                        className={`absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-background ${
-                          supportContact.status === "online" ? "bg-green-500" : "bg-gray-500"
-                        }`}
+                        className={`absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-background ${supportContact.status === "online" ? "bg-green-500" : "bg-gray-500"
+                          }`}
                       />
                     </div>
                     <div className="flex-1 overflow-hidden">

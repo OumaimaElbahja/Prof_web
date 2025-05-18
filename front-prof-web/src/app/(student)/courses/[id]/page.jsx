@@ -7,7 +7,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
 
-export default function CourseDetail({ params }: { params: { id: string } }) {
+export default function CourseDetail({ params }) {
   // Dans une application réelle, vous récupéreriez les données du cours à partir de l'ID
   const courseId = Number.parseInt(params.id)
   const course = courses.find((c) => c.id === courseId) || courses[0]
