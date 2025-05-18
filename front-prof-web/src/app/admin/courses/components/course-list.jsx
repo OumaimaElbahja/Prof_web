@@ -36,8 +36,8 @@ export function CourseList({ courses, onEdit, onDelete }) {
     useEffect(() => {
         const filteredCourses = courses.filter((course) => {
             const matchesSearch =
-                course.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                course.code.toLowerCase().includes(searchTerm.toLowerCase())
+                course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                course.acces_code.toLowerCase().includes(searchTerm.toLowerCase())
 
             const matchesStatus = statusFilter === "all" || course.status.toLowerCase() === statusFilter.toLowerCase()
 
@@ -113,9 +113,9 @@ export function CourseList({ courses, onEdit, onDelete }) {
                                         <Badge variant={course.status === "Active" ? "default" : "secondary"} className="mb-2">
                                             {course.status}
                                         </Badge>
-                                        <CardTitle className="text-xl">{course.name}</CardTitle>
+                                        <CardTitle className="text-xl">{course.title}</CardTitle>
                                         <CardDescription className="mt-1 font-medium">
-                                            {course.code} • {course.credits} credits
+                                            {course.acces_code} • {course.credits} credits
                                         </CardDescription>
                                     </div>
                                     <DropdownMenu>

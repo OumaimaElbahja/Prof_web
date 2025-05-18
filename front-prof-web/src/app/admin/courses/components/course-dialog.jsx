@@ -21,8 +21,8 @@ import { FileText, ImageIcon, Link, Plus, Trash2, Video } from "lucide-react"
 
 export function CourseDialog({ open, onOpenChange, onSave, course }) {
     const [formData, setFormData] = useState({
-        code: "",
-        name: "",
+        acces_code: "",
+        title: "",
         description: "",
         schedule: "",
         credits: 3,
@@ -44,8 +44,8 @@ export function CourseDialog({ open, onOpenChange, onSave, course }) {
     useEffect(() => {
         if (course) {
             setFormData({
-                code: course.code,
-                name: course.name,
+                acces_code: course.acces_code,
+                title: course.title,
                 description: course.description,
                 schedule: course.schedule,
                 credits: course.credits,
@@ -56,8 +56,8 @@ export function CourseDialog({ open, onOpenChange, onSave, course }) {
             })
         } else {
             setFormData({
-                code: "",
-                name: "",
+                acces_code: "",
+                title: "",
                 description: "",
                 schedule: "",
                 credits: 3,
@@ -77,8 +77,8 @@ export function CourseDialog({ open, onOpenChange, onSave, course }) {
         setResourceErrors({})
     }, [course, open])
 
-    const handleChange = (field) => {
-        setFormData((prev, value) => ({
+    const handleChange = (field, value) => {
+        setFormData((prev) => ({
             ...prev,
             [field]: value,
         }))
@@ -93,7 +93,7 @@ export function CourseDialog({ open, onOpenChange, onSave, course }) {
         }
     }
 
-    const handleResourceChange = (field) => {
+    const handleResourceChange = (field, value) => {
         setNewResource((prev) => ({
             ...prev,
             [field]: value,
@@ -112,12 +112,12 @@ export function CourseDialog({ open, onOpenChange, onSave, course }) {
     const validateForm = () => {
         const newErrors = {}
 
-        if (!formData.code.trim()) {
-            newErrors.code = "Course code is required"
+        if (!formData.acces_code.trim()) {
+            newErrors.acces_code = "Course code is required"
         }
 
-        if (!formData.name.trim()) {
-            newErrors.name = "Course name is required"
+        if (!formData.title.trim()) {
+            newErrors.title = "Course name is required"
         }
 
         if (!formData.schedule.trim()) {
@@ -219,14 +219,14 @@ export function CourseDialog({ open, onOpenChange, onSave, course }) {
                     <TabsContent value="details" className="space-y-4 mt-4">
                         <div className="grid grid-cols-2 gap-4">
                             <div className="grid gap-2">
-                                <Label htmlFor="code">Course Code</Label>
+                                <Label htmlFor="acces_code">Course Code</Label>
                                 <Input
-                                    id="code"
-                                    value={formData.code}
-                                    onChange={(e) => handleChange("code", e.target.value)}
-                                    className={errors.code ? "border-destructive" : ""}
+                                    id="acces_code"
+                                    value={formData.acces_code}
+                                    onChange={(e) => handleChange("acces_code", e.target.value)}
+                                    className={errors.acces_code ? "border-destructive" : ""}
                                 />
-                                {errors.code && <p className="text-sm text-destructive">{errors.code}</p>}
+                                {errors.acces_code && <p className="text-sm text-destructive">{errors.acces_code}</p>}
                             </div>
                             <div className="grid gap-2">
                                 <Label htmlFor="credits">Credits</Label>
@@ -241,14 +241,14 @@ export function CourseDialog({ open, onOpenChange, onSave, course }) {
                             </div>
                         </div>
                         <div className="grid gap-2">
-                            <Label htmlFor="name">Course Name</Label>
+                            <Label htmlFor="title">Course Name</Label>
                             <Input
-                                id="name"
-                                value={formData.name}
-                                onChange={(e) => handleChange("name", e.target.value)}
-                                className={errors.name ? "border-destructive" : ""}
+                                id="title"
+                                value={formData.title}
+                                onChange={(e) => handleChange("title", e.target.value)}
+                                className={errors.title ? "border-destructive" : ""}
                             />
-                            {errors.name && <p className="text-sm text-destructive">{errors.name}</p>}
+                            {errors.title && <p className="text-sm text-destructive">{errors.title}</p>}
                         </div>
                         <div className="grid gap-2">
                             <Label htmlFor="description">Description</Label>
